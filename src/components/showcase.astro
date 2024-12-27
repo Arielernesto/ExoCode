@@ -1,0 +1,45 @@
+---
+// import { motion } from 'framer-motion'
+// import Image from 'next/image'
+---
+
+    <section id="showcase" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-base text-purple-600 font-semibold tracking-wide uppercase">Showcase</h2>
+          <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            See StartupX in action
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <img
+              src="/placeholder.svg?height=400&width=600"
+              alt="StartupX dashboard"
+              width={600}
+              height={400}
+              class="rounded-lg shadow-xl"
+            />
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Lorem ipsum laborum</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur id autem, nulla, vitae consectetur dolore dolor asperiores velit voluptates aperiam suscipit, expedita quibusdam a repellat. Id excepturi assumenda velit numquam.
+            </p>
+            <ul class="space-y-4">
+              {['Lorem ipsum laborum', 'Lorem ipsum laborumn', 'Lorem ipsum laborum', 'Integration with popular tools'].map((feature, index) => (
+                <li
+                  class="flex items-center space-x-3 text-gray-700 dark:text-gray-200"
+                >
+                  <svg class="flex-shrink-0 w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+

@@ -1,0 +1,52 @@
+---
+const features = [
+  {
+    name: 'Desarrollo Ágil',
+    description: 'Implementamos metodologías ágiles para entregar resultados rápidos y adaptarnos a tus necesidades cambiantes.',
+    // icon: Zap,
+  },
+  {
+    name: 'Código Limpio',
+    description: 'Nuestro equipo se enfoca en escribir código limpio, mantenible y escalable para garantizar la longevidad de tu proyecto.',
+    // icon: Code,
+  },
+  {
+    name: 'Seguridad Primero',
+    description: 'La seguridad es nuestra prioridad. Implementamos las mejores prácticas para proteger tus datos y tu aplicación.',
+    // icon: Shield,
+  },
+]
+---
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center">
+          <h2 class="text-base text-purple-600 font-semibold tracking-wide uppercase">Características</h2>
+          <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            Una mejor forma de construir
+          </p>
+          <p class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto">
+            Nuestro enfoque innovador combina tecnología de punta con creatividad para ofrecer soluciones únicas.
+          </p>
+        </div>
+
+        <div class="mt-20">
+          <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+            {features.map((feature, index) => (
+              <div
+                class="relative"
+              >
+                <dt>
+                  <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
+                    {/* <feature.icon class="h-6 w-6" aria-hidden="true" /> */}
+                  </div>
+                  <p class="ml-16 text-lg leading-6 font-medium text-gray-900 dark:text-white">{feature.name}</p>
+                </dt>
+                <dd class="mt-2 ml-16 text-base text-gray-500 dark:text-gray-300">{feature.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </section>
+

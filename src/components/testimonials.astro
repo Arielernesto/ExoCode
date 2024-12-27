@@ -1,0 +1,52 @@
+---
+// import { motion } from 'framer-motion'
+// import Image from 'import Image from 'next/image'
+
+const testimonials = [
+  {
+    content: "StartupX transformed our business. Their platform allowed us to launch our product in half the time we expected.",
+    author: "Jane Doe",
+    role: "CEO, TechInnovate"
+  },
+  {
+    content: "The analytics dashboard is a game-changer. We're now making data-driven decisions that have significantly improved our ROI.",
+    author: "John Smith",
+    role: "CTO, DataDriven"
+  },
+  {
+    content: "StartupX's customer support is unparalleled. They're always there when we need them, helping us overcome any challenge.",
+    author: "Alice Johnson",
+    role: "Founder, QuickStart"
+  }
+]
+---
+
+    <section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white text-center mb-12">
+          What our customers are saying
+        </h2>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {testimonials.map((testimonial, index) => (
+            <div
+              class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8"
+            >
+              <p class="text-gray-600 dark:text-gray-300 mb-4">{testimonial.content}</p>
+              <div class="flex items-center">
+                <img
+                  src="/placeholder.svg?height=40&width=40"
+                  alt={testimonial.author}
+                  width={40}
+                  height={40}
+                  class="rounded-full"
+                />
+                <div class="ml-4">
+                  <p class="text-gray-900 dark:text-white font-semibold">{testimonial.author}</p>
+                  <p class="text-gray-500 dark:text-gray-400 text-sm">{testimonial.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>

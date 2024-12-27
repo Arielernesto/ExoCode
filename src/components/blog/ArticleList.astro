@@ -1,0 +1,79 @@
+---
+
+const articles = [
+  {
+    icon: '/placeholder.svg?height=48&width=48',
+    title: 'AdventJS 2022, ¡ya está aquí! Ahora con soporte para TypeScript',
+    excerpt: 'Descubre las novedades de AdventJS 2022 y cómo puedes mejorar tus habilidades en TypeScript.',
+    date: '4 diciembre 2022',
+    type: 'js',
+    href: '/posts/adventjs-2022'
+  },
+  {
+    icon: '/placeholder.svg?height=48&width=48',
+    title: '¿Es React una biblioteca o un framework?',
+    excerpt: 'Analizamos en profundidad si React debería considerarse una biblioteca o un framework completo.',
+    date: '12 octubre 2022',
+    type: 'react',
+    href: '#dwadwadwd'
+  },
+  {
+    icon: '/placeholder.svg?height=48&width=48',
+    title: 'Malas prácticas en JavaScript',
+    excerpt: 'Aprende a identificar y evitar las malas prácticas más comunes en JavaScript para mejorar tu código.',
+    date: '11 septiembre 2022',
+    type: 'js',
+    href: '#'
+  },
+  {
+    icon: '/placeholder.svg?height=48&width=48',
+    title: 'Resumen del libro "14 Hábitos de Desarrolladores Altamente Productivos"',
+    excerpt: 'Descubre los hábitos clave que pueden hacer que te conviertas en un desarrollador más productivo.',
+    date: '26 julio 2022',
+    type: 'book',
+    href: '#'
+  }
+]
+---
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-6">Últimos artículos</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {articles.map((article, index) => (
+          <article  class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <img
+                  src={article.icon}
+                  alt=""
+                  width={48}
+                  height={48}
+                  class={`rounded mr-4 ${
+                    article.type === 'js' ? 'bg-yellow-100' :
+                    article.type === 'react' ? 'bg-cyan-100' :
+                    'bg-gray-100'
+                  }`}
+                />
+                <div>
+                  <h3 class="font-semibold text-xl mb-1">{article.title}</h3>
+                  <time class="text-sm text-gray-500 dark:text-gray-400">{article.date}</time>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">{article.excerpt}</p>
+              <a href={article.href} class="text-blue-600 dark:text-blue-400 hover:underline">
+                Leer más →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="flex justify-between mt-8">
+        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">
+          ← Artículos más recientes
+        </a>
+        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">
+          Artículos anteriores →
+        </a>
+      </div>
+    </section>
+
