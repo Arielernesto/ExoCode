@@ -1,4 +1,7 @@
 ---
+import InfiniteSlider from './ui/InfiniteSlider.svelte'
+import Card from './ui/card.svelte'
+
 const features = [
   {
     name: 'Desarrollo Ágil',
@@ -18,7 +21,7 @@ const features = [
 ]
 ---
 
-    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800">
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800 overflow-hidden">
       <div class="max-w-7xl mx-auto">
         <div class="text-center">
           <h2 class="text-base text-purple-600 font-semibold tracking-wide uppercase">Características</h2>
@@ -33,8 +36,9 @@ const features = [
         <div class="mt-20">
           <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
             {features.map((feature, index) => (
+               <Card>
               <div
-                class="relative"
+                class="relative z-1"
               >
                 <dt>
                   <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
@@ -44,9 +48,75 @@ const features = [
                 </dt>
                 <dd class="mt-2 ml-16 text-base text-gray-500 dark:text-gray-300">{feature.description}</dd>
               </div>
+            </Card>
+
             ))}
           </dl>
         </div>
       </div>
     </section>
+   <InfiniteSlider client:load/>
 
+
+<style>
+.carousel {
+    margin: 0 auto;
+    padding: 20px 0;
+    max-width: 90%;
+    overflow: hidden;
+    display: flex;
+    > * {
+      flex: 0 0 100%;
+    }
+
+     &:hover .group {
+      animation-play-state: paused;
+    }
+  }
+  .group {
+    /* ... */
+    will-change: transform; /* Deberíamos ser amables con el navegador: hazle saber qué vamos a animar. */
+    animation: scrolling 10s linear infinite;
+  }
+
+  @keyframes scrolling {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .group {
+    display: flex;
+    gap: 20px;
+    /* Agrega padding a la derecha para crear un espacio entre la última y la primera tarjeta. */
+    padding-right: 20px;
+  }
+
+
+  .card {
+    width: 100%;
+    color: white;
+    border-radius: 24px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    font-size: xx-large;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+
+    &:nth-child(1) {
+      background: #7958ff;
+    }
+
+    &:nth-child(2) {
+      background: #5d34f2;
+    }
+
+    &:nth-child(3) {
+      background: #4300da;
+    }
+  }
+</style>

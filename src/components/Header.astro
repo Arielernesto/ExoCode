@@ -1,77 +1,33 @@
 ---
 
-// import { Sun, Moon, Menu, X } from 'lucide-react'
-// import Link from 'next/link'
-import NavLink from './NavLink.astro'
 ---
- 
-    <header class="bg-white dark:bg-gray-900 shadow-sm">
-      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="/" class="text-2xl font-bold text-purple-600 dark:text-purple-400">
-          StartupX
-		</a>
-        
-        <nav class="hidden md:flex gap-x-6">
-			<a
-			href={"/blog"}
-			class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-		  >
-			Blog
-	  	  </a>
-			<a
-			href={"/blog"}
-			class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-		  >
-			Nosotros
-	  	  </a>
-			<a
-			href={"/blog"}
-			class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-		  >
-			Contacto
-	  	  </a>
-			<a
-			href={"/blog"}
-			class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-		  >
-			Terminos y Condiciones
-	  	  </a>
-        </nav>
-        
-        <div class="flex items-center space-x-4">
-          <!-- <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            aria-label={theme === 'dark' ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {theme === 'dark' ? <Sun class="w-5 h-5" /> : <Moon class="w-5 h-5" />}
-          </button> -->
-          
-          <!-- <button
-            class="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-		  sa
-            {isMenuOpen ? <X class="w-6 h-6" /> : <Menu class="w-6 h-6" />}
-          </button> -->
+
+<header
+    class="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-white/80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
+
+    <nav class="px-4">
+        <div class="flex items-center justify-between">
+            <div class="flex shrink-0">
+                <a aria-current="page" class="flex items-center" href="/">
+                    <span class="text-purple-500 font-bold text-xl">StartupX</span>
+                    <p class="sr-only">StartupX</p>
+                </a>
+            </div>
+            <div class="hidden md:flex md:items-center md:justify-center md:gap-5">
+                <a aria-current="page"
+                    class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+                    href="#">Proyectos</a>
+                <a class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+                    href="#">Nosotros</a>
+                <a class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+                  href="/blog">Blog</a>
+            </div>
+            <div class="flex items-center justify-end gap-3">
+                <a class="hidden items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex"
+                    href="/login">Sign in</a>
+                <a class="inline-flex items-center justify-center rounded-xl bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-purple-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                    href="/login">Login</a>
+            </div>
         </div>
-      </div>
-      
-      {/* Mobile menu */}
-      <!-- {isMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          class="md:hidden bg-white dark:bg-gray-900 py-4"
-        >
-          <nav class="container mx-auto px-4 flex flex-col space-y-4">
-            <NavLink href="#features" onClick={() => setIsMenuOpen(false)}>Features</NavLink>
-            <NavLink href="#showcase" onClick={() => setIsMenuOpen(false)}>Showcase</NavLink>
-            <NavLink href="#testimonials" onClick={() => setIsMenuOpen(false)}>Testimonials</NavLink>
-            <NavLink href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
-          </nav>
-        </motion.div>
-      )} -->
-    </header>
+      </nav>
+</header>

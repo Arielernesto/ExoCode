@@ -1,14 +1,17 @@
 ---
-// import { motion } from 'framer-motion'
-// import Image from 'next/image'
+import Button from './ui/button.svelte'
+import AnimatedText from './ui/animatedText.svelte'
+import WaButton from './ui/WaButton.svelte'
 
 ---
-    <section class="py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+
+  
+    <section class="py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg pt-[100px]">
       <div class="max-w-7xl mx-auto">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
           <div>
             <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
-              <span class="block">Innovate Faster with</span>
+              <AnimatedText text="Innovate Faster with" client:load/>
               <span class="block text-purple-600">StartupX</span>
             </h1>
             <p class="mt-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
@@ -16,35 +19,32 @@
             </p>
             <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
               <div class="rounded-md shadow">
-                <a
-                  href="#"
-                  class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 md:py-4 md:text-lg md:px-10"
-                >
-                  Get Started
-                </a>
+               <Button>
+                 Proyectos
+              </Button>
               </div>
               <div class="mt-3 sm:mt-0 sm:ml-3">
-                <a
-                  href="#"
-                  class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-purple-700 bg-purple-100 hover:bg-purple-200 md:py-4 md:text-lg md:px-10"
-                >
-                  Learn More
-                </a>
+           
+              <WaButton className="py-[calc(1rem/3)] px-[2rem] text-2xl ">
+                Contáctanos
+              </WaButton>
               </div>
             </div>
           </div>
           <div
             class="mt-12 lg:mt-0"
           >
-            <img
-              class="w-full rounded-lg shadow-xl"
-              src="/placeholder.svg?height=600&width=800"
-              alt="StartupX platform illustration"
-              width={800}
-              height={600}
-            />
+         
           </div>
         </div>
       </div>
     </section>
 
+<style>
+  .bg{
+    /* background-image: linear-gradient(to right bottom, #ffffff, #faf9fb, #f5f3f7, #f1ecf3, #eee6ee, #efdaed, #f1ceeb, #f3c2e8, #f6ade9, #f897eb, #f87fed, #f665f0); */ 
+    background: url('/bg.svg') no-repeat center center; 
+    background-size: cover; 
+    
+  }
+</style>
