@@ -36,10 +36,8 @@ const features = [
         <div class="mt-20">
           <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
             {features.map((feature, index) => (
-               <Card>
-              <div
-                class="relative z-1"
-              >
+            <Card>
+              <div class="relative z-1">
                 <dt>
                   <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
                     {/* <feature.icon class="h-6 w-6" aria-hidden="true" /> */}
@@ -55,7 +53,9 @@ const features = [
         </div>
       </div>
     </section>
-   <InfiniteSlider client:load/>
+    <div class="bg-gray-50 w-full">
+      <InfiniteSlider client:only/>
+    </div>
 
 
 <style>

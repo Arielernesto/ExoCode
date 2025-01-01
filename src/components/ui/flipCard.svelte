@@ -1,12 +1,14 @@
-<div class="flip-card">
+<script>
+  export let className
+</script>
+
+<div class="flip-card {className}">
     <div class="flip-card-inner">
         <div class="flip-card-front">
-            <p class="title">FLIP CARD</p>
-            <p>Hover Me</p>
+           <slot name="flip-front"></slot>
         </div>
         <div class="flip-card-back">
-            <p class="title">BACK</p>
-            <p>Leave Me</p>
+          <slot name="flip-back"></slot>
         </div>
     </div>
 </div>
@@ -14,8 +16,7 @@
 <style>
   .flip-card {
     background-color: transparent;
-    width: 190px;
-    height: 254px;
+    /* height: 254px; */
     perspective: 1000px;
     font-family: sans-serif;
   }
@@ -41,7 +42,7 @@
   }
 
   .flip-card-front, .flip-card-back {
-    box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+    /* box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2); */
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -50,20 +51,22 @@
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border: 1px solid coral;
+    /* border: 1px solid coral; */
     border-radius: 1rem;
   }
 
   .flip-card-front {
-    background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
+    /* background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
        rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
-    color: coral;
+    color: coral; */
+    background-color: transparent;
   }
 
   .flip-card-back {
-    background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%,
+    /* background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%,
        bisque 40%, rgb(255, 185, 160) 78%);
-    color: white;
+    color: white; */
+    background-color: transparent;
     transform: rotateY(180deg);
   }
 </style>

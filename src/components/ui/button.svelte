@@ -1,7 +1,9 @@
-
+<script>
+  export let className
+</script>
 
 <div class="relative outline outline-1 outline-[#d9a1ff] box group rounded-md">
-  <button class="font-semibold text-[1.5rem]  bg-transparent py-[calc(1rem/3)] px-[2rem] border-none cursor-pointer text-[#F6F4EB] text-shadow relative z-[100]">
+  <button class={`${className} font-semibold text-[1.5rem]  bg-transparent py-[calc(1rem/3)] px-[2rem] border-none cursor-pointer text-[#F6F4EB] text-shadow relative z-[100]`}>
     <slot></slot>
   </button>
   <div class="absolute  rounded-md space  bottom-0 w-full h-full gap-[1.5rem] transition-opacity duration-500 opacity-0 overflow-hidden flex bg-gradient-to-r from-[#120e1e] to-[#271950] group-hover:opacity-100 ">

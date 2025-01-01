@@ -1,8 +1,9 @@
 <script>
   export let text
+  export let className
 </script>
 
-<button class="button" data-text={text}>
+<button class={className + " button"} data-text={text}>
     <span class="actual-text">&nbsp;{text}&nbsp;</span>
     <span aria-hidden="true" class="hover-text">&nbsp;{text}&nbsp;</span>
 </button>
@@ -16,6 +17,9 @@
     padding: 0;
     border: none;
     cursor: pointer;
+  }
+  span{
+    text-wrap: nowrap;
   }
 
   /* button styling */

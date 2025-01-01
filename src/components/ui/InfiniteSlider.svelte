@@ -37,7 +37,8 @@
     margin: 0 auto;
     position: relative;
     padding: 20px 0;
-    max-width: 90%;
+    max-width: 1250px;
+    width: 100%;
     overflow: hidden;
     display: flex;
     > * {
