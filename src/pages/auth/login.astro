@@ -1,0 +1,10 @@
+---
+import LoginPage from '../../components/auth/login.svelte'
+import AuthLayout from '../../layouts/AuthLayout.astro'
+---
+
+<AuthLayout>
+    <div class="flex justify-center pt-20">
+        <LoginPage client:only/>
+    </div>
+</AuthLayout>

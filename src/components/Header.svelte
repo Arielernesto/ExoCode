@@ -1,5 +1,12 @@
----
----
+<script>
+  import { user as User } from "store/store";
+  let user
+  User.subscribe(value => {
+    user = value
+    console.log(user)
+  })
+</script>
+
 
 <header class="fixed inset-x-0 top-0  mx-auto w-full max-w-screen-md border border-gray-100 bg-white/80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg z-[23213]">
     <nav class="px-4" id="nav">
@@ -17,14 +24,17 @@
             <a href="/blog" class="nav-link">Blog</a>
           </div>
         </div>
+        {#if !user}
         <div class="hidden md:flex items-center justify-end gap-3">
-          <a href="/login" class="hidden items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex">
+          <a href="/auth/register" class="hidden items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex">
             Sign in
           </a>
-          <a href="/login" class="inline-flex items-center justify-center rounded-xl bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-purple-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">
+          <a href="/auth/login" class="inline-flex items-center justify-center rounded-xl bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-purple-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">
             Login
           </a>
         </div>
+        {/if}
+      
         <div class="md:hidden">
           <button id="menu-toggle" class="text-gray-500 hover:text-gray-600 focus:outline-none" aria-label="Toggle menu">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -40,12 +50,14 @@
           <a href="#" class="nav-link mobile">Proyectos</a>
           <a href="#" class="nav-link mobile">Nosotros</a>
           <a href="/blog" class="nav-link mobile">Blog</a>
-          <a href="/login" class="inline-flex items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50">
+          {#if user}
+            <a href="/auth/register" class="inline-flex items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50">
             Sign in
           </a>
-          <a href="/login" class="inline-flex items-center justify-center rounded-xl bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-purple-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 relative z-[98]">
+          <a href="/auth/login" class="inline-flex items-center justify-center rounded-xl bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-purple-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 relative z-[98]">
             Login
           </a>
+          {/if} 
         </div>
       </div>
     </div>
@@ -72,7 +84,7 @@
     }
   </style>
   
-  <script>
+  <script module>
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const navbar = document.getElementById('nav')

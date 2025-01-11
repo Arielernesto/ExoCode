@@ -1,37 +1,55 @@
 <script  lang="ts">
-  import { validateUserLogin } from "./login";
+  import { validateUser } from "./register";
   import { Mutate } from "lib/apollo-client";
-  import { LOGIN_MUTATION } from "queries/auth";
+  import { REGISTER_MUTATION } from "queries/auth";
   import { Toaster } from "lib/components/ui/sonner";
   import { toast } from "svelte-sonner";
-  
+  import { type User } from "./register";
+  let username: string = ""
+  let lastname: string = ""
   let email: string = ""
   let password: string = ""
+  let confirmPassword: string = ""
   let dataErrors : {
-      [key: string]: string | boolean
+      [key: string]: string
   } = {}
 
+  
   async function onSubmit(event: Event) {
     event.preventDefault()
-    const { data, errors } = validateUserLogin({email, password})
+    const { data, errors } = validateUser({username, lastname, email, password, confirmPassword})
     dataErrors = errors
-    if (dataErrors.status) return
-    const variables = { password, email }
-    const { loading, data: petData, error: petError}: { loading: boolean, data: any, error: any} = await Mutate(LOGIN_MUTATION, variables)
+    const variables = { username, lastname, password, email }
+    const { loading, data: petData, error: petError}: { loading: boolean, data: any, error: any } = await Mutate(REGISTER_MUTATION, variables)
     if (petError) {
-      console.log(petError)
+      if (petError?.cause.extensions.path == "email") return toast.error(petError.cause.message)
       return toast.error("Ha ocurrido un error")
     }
-    toast.success("Usuario logueado con éxito")
-    return window.location.href = "/"
+
+    toast.success("Usted se ha registrado con éxito")
+    window.location.href = "/"
+    
   }
 </script>
 
+
 <Toaster></Toaster>
 <form class="form shadow-lg" on:submit={onSubmit}>
-    <p class="title text-purple-500">Iniciar Sesión</p>
-    <p class="message">Inicie sesión en nuestra plataforma</p>
-      
+    <p class="title text-purple-500">Registrarse</p>
+    <p class="message">Registrese en nuestra plataforma</p>
+        <div class="flex">
+        <label>
+            <input bind:value={username} required  placeholder="" type="text" class="input" >
+            <span>Nombre</span>
+            <span class="text-red-500 text-sm font-bold">{dataErrors?.name}</span>
+        </label>
+        <label>
+            <input bind:value={lastname} required placeholder="" type="text" class="input">
+            <span>Apellido</span>
+            <span class="text-red-500 text-sm font-bold">{dataErrors?.lastname}</span>
+        </label>
+    </div>  
+            
     <label>
         <input bind:value={email} required placeholder="" type="email" class="input">
         <span>Email</span>
@@ -43,9 +61,13 @@
         <span>Contraseña</span>
         <span class="text-red-500 text-sm font-bold">{dataErrors?.password}</span>
     </label>
-
-    <button class="submit" type="submit">Iniciar Sesión</button>
-    <p class="signin">No tienes una cuenta? <a href="/auth/register">Registrarse</a> </p>
+    <label>
+        <input bind:value={confirmPassword} required placeholder="" type="password" class="input">
+        <span>Confirmar Contraseña</span>
+        <span class="text-red-500 text-sm font-bold">{dataErrors?.confirmPassword}</span>
+    </label>
+    <button class="submit" type="submit">Crear Cuenta</button>
+    <p class="signin">Ya tienes un cuenta? <a href="/auth/login">Inicia sesión</a> </p>
 </form>
 
 <style>
@@ -53,8 +75,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
-    max-width: 450px;
+    max-width: 350px;
     background-color: #fff;
     padding: 20px;
     border-radius: 20px;
@@ -71,9 +92,6 @@
     padding-left: 30px;
   }
 
-  .input{
-    background-color: #fff !important;
-  }
   .title::before,.title::after {
     position: absolute;
     content: "";
@@ -128,6 +146,9 @@
     border-radius: 10px;
   }
 
+  .input{
+    background-color: #fff;
+  }
   .form label .input + span {
     position: absolute;
     left: 10px;
@@ -182,4 +203,3 @@
     }
   }
 </style>
-dssd

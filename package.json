@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@apollo/client": "^3.12.3",
     "@astrojs/mdx": "^4.0.3",
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
@@ -16,11 +17,25 @@
     "@astrojs/tailwind": "^5.1.4",
     "@astrojs/vercel": "^8.0.1",
     "astro": "^5.1.1",
+    "graphql": "^16.10.0",
     "lottie-web": "^5.12.2",
     "svelte": "^5.15.0",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
     "uvcanvas": "^0.2.2",
+    "zod": "^3.24.1",
     "zustand": "5.0.0-rc.2"
+  },
+  "devDependencies": {
+    "bits-ui": "1.0.0-next.77",
+    "clsx": "^2.1.1",
+    "flowbite": "^2.5.2",
+    "flowbite-svelte": "^0.47.4",
+    "flowbite-svelte-icons": "^2.0.2",
+    "mode-watcher": "^0.5.0",
+    "svelte-sonner": "^0.3.28",
+    "tailwind-merge": "^2.6.0",
+    "tailwind-variants": "^0.3.0",
+    "tailwindcss-animate": "^1.0.7"
   }
 }

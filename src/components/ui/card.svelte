@@ -13,7 +13,7 @@
   :root {
     --accent: purple;
     --canvas: color-mix(in lch, canvas, canvasText 1%);
-    --border: color-mix(in lch, canvas, canvasText 10%);
+    --border-r: color-mix(in lch, canvas, canvasText 10%);
     --text: color-mix(in lch, canvasText, canvas 25%);
     --border-radius: 24;
     --border-width: 3;
@@ -21,7 +21,6 @@
   }
   aside {
     --font-level: 1;
-    max-width: calc(100vw - 4rem);
     line-height: 1.5;
     container-type: inline-size;
     position: relative;
@@ -32,7 +31,7 @@
     inset: 0;
     clip-path: inset(0 0 0 0 round calc(var(--border-radius) * 1px));
     border-radius: calc(var(--border-radius) * 1px);
-    background: var(--border);
+    background: var(--border-r);
     z-index: -1;
     border: 0;
     container-type: inline-size;
@@ -78,6 +77,7 @@
     border-radius: calc(var(--border-radius) * 1px);
     padding: clamp(1rem, 3vmin + 1rem, 6rem);
     display: grid;
+    justify-content: center;
     gap: clamp(1rem, 3vmin + 1rem, 4rem);
   }
 
@@ -158,10 +158,7 @@
   .content {
     transition: transform var(--t) calc(var(--d) * 1),
       opacity calc(var(--t) * 0.5) calc(var(--d) * 0.5);
+      width: 100%;
   }
-
-div.tp-dfwv {
-  width: 274px;
-}
 
 </style>

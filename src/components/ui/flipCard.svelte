@@ -54,6 +54,11 @@
     /* border: 1px solid coral; */
     border-radius: 1rem;
   }
+  @media screen and (min-width: 400px) and (max-width: 640px){
+    .card-responsive-problem{
+      margin-bottom: 8rem !important;
+    }
+  }
 
   .flip-card-front {
     /* background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,

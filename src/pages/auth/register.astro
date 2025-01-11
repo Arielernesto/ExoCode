@@ -1,0 +1,10 @@
+---
+import RegisterPage from '../../components/auth/RegisterComponent.svelte'
+import AuthLayout from '../../layouts/AuthLayout.astro'
+---
+
+<AuthLayout>
+    <div class="flex justify-center pt-20">
+        <RegisterPage client:only/>
+    </div>
+</AuthLayout>
