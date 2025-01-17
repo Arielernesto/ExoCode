@@ -6,6 +6,8 @@ import  Footer from '../components/Footer.astro'
 import Loader from 'components/ui/Loader.svelte'
 import Authorize from 'components/AuthorizeComponent.svelte'
 
+
+const { componentsDefault } = Astro.props || false
 ---
 
 <script>
@@ -65,10 +67,10 @@ import Authorize from 'components/AuthorizeComponent.svelte'
             <Loader></Loader>
         </div>
 
-        <Header client:only/>
+        {componentsDefault ? <div></div>  : <Header client:only/> }
 		<main class="min-h-screen bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 "  id="container">
 			<slot/>
-		</main>
-        <Footer />
+		</main>´
+		{componentsDefault ? <div></div>  : <Footer /> }
 	</body>
 </html>

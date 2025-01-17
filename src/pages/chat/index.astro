@@ -1,0 +1,318 @@
+---
+import Layout from 'layouts/Layout.astro'
+import App from 'components/chat/App.svelte'
+
+---
+    <!-- <script src="pages/chat/chat.js"></script> -->
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --secondary-color: #E3F2FD;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Panel de usuarios */
+        .users-panel {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-profile {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .user-avatar-chat {
+            border: 2px solid rgb(13, 37, 143);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #2196F3;
+            background-image: url('profile.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 90%;
+            
+        }
+        #chat-avatar{
+            display: none;
+        }
+
+        .users-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .user-item {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .user-item:hover {
+            background: var(--secondary-color);
+        }
+
+        .user-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Panel de chat */
+        .chat-panel {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: calc(100vh - 200px);
+            background: #f5f5f5;
+
+        }
+
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .chat-input button {
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .chat-input button:hover {
+            background: #1976D2;
+        }
+
+        /* Login Form */
+        #login-form {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #login-form button {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-online::before {
+            background: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .status-offline::before {
+            background: #cf0303;
+        }
+        .En {
+          color: #4CAF50;
+          }
+
+        .chat-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .unread-badge {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            min-width: 20px;
+            height: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .area-up{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    </style>
+
+    <Layout componentsDefault={true} >
+
+    <!-- Formulario de Login -->
+    <!-- <form id="login-form">
+        <h2>Iniciar Sesión</h2>
+        <div class="form-group">
+            <input type="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Contraseña" required>
+        </div>
+        <button type="submit">Iniciar Sesión</button>
+    </form> -->
+    
+    <App client:only></App>
+    <!-- Interfaz Principal -->
+    <div class="container" id="chat-interface" style="display: none;">
+        <!-- Panel de Usuarios -->
+        <div class="users-panel">
+            <div class="user-profile">
+                <div class="user-avatar" id="current-user-avatar"></div>
+                <div class="user-info">
+                    <h3 id="current-user-name">Cargando...</h3>
+                    <span class="status-badge status-online">En linea</span>
+                    <div class="last-message"></div>
+                    <span class="last-seen"></span>
+                    <div class="unread-count"></div>
+                </div>
+            </div>
+            <div class="users-list" id="users-list">
+                <!-- Los usuarios se cargarán dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Panel de Chat -->
+        <div class="chat-panel">
+            <div class="chat-header">
+                <div class="chat-user area-up">
+                    <div>
+                    <h3 id="chat-user-name">Selecciona un usuario</h3>
+                    <span id="chat-user"></span>
+                    <p id="typing"></p>
+                </div>
+                    <div class="user-avatar-chat" id="chat-avatar" ></div>
+                
+                </div>
+            </div>
+            <div class="chat-messages" id="messages">
+                <!-- Los mensajes se cargarán dinámicamente -->
+            </div>
+            <form class="chat-input" id="message-form">
+                <input type="text" id="message-input" placeholder="Escribe un mensaje..." required>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+    </Layout>
