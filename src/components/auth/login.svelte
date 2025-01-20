@@ -22,7 +22,9 @@
       console.log(petError)
       return toast.error("Ha ocurrido un error")
     }
+    
     toast.success("Usuario logueado con éxito")
+    
     return window.location.href = "/"
   }
 </script>

@@ -1,42 +1,46 @@
 <script lang="ts">
-    import { Check, CheckCheck } from 'lucide-svelte';
+  import { CheckPlusCircleSolid } from 'flowbite-svelte-icons';
+    import { Check, CheckCheck, CheckCheckIcon, CheckCircle, CheckCircle2, CheckCircleIcon } from 'lucide-svelte';
+  import { formatTime } from 'utils/chat/chat';
   
     export let message: string;
     export let isOwnMessage: boolean = false;
-    export let timestamp: string;
+    export let timestamp: Date;
     export let status: 'sent' | 'delivered' | 'read' = 'sent';
-    export let replyTo: { author: string; content: string } | null = null;
+    export let replyTo: { author: string; content: string;} | null = null;
   
-    function getStatusIcon(status: string) {
-      switch (status) {
-        case 'delivered':
-          return Check;
-        case 'read':
-          return CheckCheck;
-        default:
-          return null;
-      }
+   function getStatusIcon(status: string) {
+    switch (status) {
+      case 'sent':
+        return Check ;
+      case 'delivered':
+        return CheckCheck;
+      case 'read':
+        return CheckCircleIcon;
+      default:
+        return null;
     }
+  }
   
     const StatusIcon = getStatusIcon(status);
   </script>
   
   <div class="chat-bubble {isOwnMessage ? 'own-message' : 'other-message'}">
     {#if replyTo}
-      <div class="reply-content">
-        <div class="reply-author">{replyTo.author}</div>
-        <div class="reply-text">{replyTo.content}</div>
-      </div>
-    {/if}
+    <div class="reply-content">
+      <div class="reply-author">{replyTo.author}</div>
+      <div class="reply-text">{replyTo.content}</div>
+    </div>
+  {/if}
     <div class="message-content">
       {message}
     </div>
     <div class="message-meta">
-      <span class="timestamp">{timestamp}</span>
+      <span class="timestamp">{formatTime(timestamp)}</span>
       {#if isOwnMessage && StatusIcon}
-        <span class="status-icon" aria-label={`Message ${status}`}>
-          <StatusIcon size={16} />
-        </span>
+      <span class="status-icon" aria-label={`Message ${status}`}>
+        <StatusIcon size={16} class="icon-style {status === 'read' ? 'status-read' : status === 'delivered' ? 'status-delivered' : 'status-sent'}" />
+      </span>
       {/if}
     </div>
   </div>
@@ -67,6 +71,10 @@
     .reply-text {
       @apply truncate;
     }
+
+    .reply-timestamp {
+    @apply text-xs text-gray-400;
+     }
   
     .message-content {
       @apply mb-1;
@@ -83,6 +91,18 @@
     .status-icon {
       @apply flex items-center;
     }
+    
+  .status-sent {
+    @apply text-red-600;
+  }
+
+  .status-delivered {
+    @apply text-red-600;
+  }
+
+  .status-read {
+    @apply text-red-500;
+  }
   
     .own-message .timestamp,
     .own-message .status-icon {
@@ -92,6 +112,7 @@
     .other-message .timestamp {
       @apply text-gray-500;
     }
+    
   </style>
   
   
