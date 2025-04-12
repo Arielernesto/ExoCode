@@ -21,6 +21,7 @@ UsersList.subscribe((value)=>{
   usuarios = value;
 })
 
+console.log(import.meta.env.PUBLIC_API_URL)
 const socket = io(import.meta.env.PUBLIC_API_URL, {
   withCredentials: true,
 });
@@ -166,6 +167,7 @@ socket.on("connect", () => {
   
       // Encuentra el usuario en el arreglo y actualiza su estado y última conexión
       const userIndex = usuarios.findIndex(user => user.id === userId);
+      console.log(usuarios)
       if (userIndex !== -1) {
           usuarios[userIndex].status = status;
           usuarios[userIndex].lastConnection = lastConnection;

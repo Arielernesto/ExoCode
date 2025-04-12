@@ -15,6 +15,7 @@ const ListUser = async () => {
       });
   
       const listUser = await response.json();
+      console.log(listUser)
       return listUser;
     } catch (error) {
       console.log(error.message || 'No se pudo obtener la respuesta');

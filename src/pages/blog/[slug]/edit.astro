@@ -1,0 +1,13 @@
+---
+import PostEditor from "../../../components/blog/PostEditor.svelte"
+import Layout from '../../../layouts/Layout.astro'
+
+const { slug } = Astro.params
+
+---
+
+<Layout>
+<div class="bg-white">
+    <PostEditor slug={slug} client:only/>
+</div>
+</Layout>

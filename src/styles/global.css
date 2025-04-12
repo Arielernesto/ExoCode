@@ -43,3 +43,66 @@
       --ring: 263.4 70% 50.4%;
     }
   }
+
+  body{
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	body {
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
+  overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
+}
+
+	/* Opcional: mejora visual de la barra de desplazamiento global */
+	body::-webkit-scrollbar {
+	width: 10px; /* Ancho de la barra de desplazamiento */
+	height: 10px; /* Altura de la barra de desplazamiento horizontal, si es necesario */
+	}
+
+	body::-webkit-scrollbar-thumb {
+	background: #888; /* Color del pulgar de la barra de desplazamiento */
+	border-radius: 5px; /* Bordes redondeados del pulgar */
+	}
+
+	body::-webkit-scrollbar-thumb:hover {
+	background: #555; /* Color del pulgar al pasar el ratón */
+	}
+  /* Reset para todos los encabezados */
+/* src/app.css */
+
+/* Estilos personalizados para h1 */
+h1 {
+  @apply text-5xl font-bold text-gray-900 mb-6 leading-tight;
+}
+
+/* Estilos personalizados para h2 */
+h2 {
+  @apply text-4xl font-semibold text-gray-800 mb-5 leading-snug;
+}
+
+/* Estilos personalizados para h3 */
+h3 {
+  @apply text-3xl font-medium text-gray-700 mb-4 leading-normal;
+}
+
+/* Estilos personalizados para h4 */
+h4 {
+  @apply text-2xl font-medium text-gray-600 mb-3 leading-relaxed;
+}
+
+/* Estilos personalizados para h5 */
+h5 {
+  @apply text-xl font-normal text-gray-500 mb-2 leading-loose;
+}
+
+/* Estilos personalizados para h6 */
+h6 {
+  @apply text-lg font-light text-gray-400 mb-1 leading-relaxed;
+}

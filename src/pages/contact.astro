@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactPage from '../components/contact/Contact.svelte';
+
+const title = "Contact Us";
+const description = "Get in touch with us through our social media channels or chat directly on our platform";
+---
+
+<Layout
+	title={title}
+	description={description}
+	pubDate={new Date()}
+	heroImage="/blog-placeholder-about.jpg"
+>
+	<ContactPage client:only="svelte" />
+</Layout> 

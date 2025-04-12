@@ -37,8 +37,10 @@
     transform-style: preserve-3d;
   }
 
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
+  @media screen and (min-width: 600px){
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
   }
 
   .flip-card-front, .flip-card-back {

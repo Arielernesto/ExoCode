@@ -1,0 +1,14 @@
+---
+import PostPage from "components/blog/PostPage.svelte"
+import Layout from 'layouts/Layout.astro'
+
+const { slug } = Astro.params
+
+---
+
+<Layout>
+<div class="bg-white">
+    <PostPage slug={slug} client:only/>
+    
+</div>
+</Layout>

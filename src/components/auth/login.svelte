@@ -22,7 +22,7 @@
       console.log(petError)
       return toast.error("Ha ocurrido un error")
     }
-    
+    console.log(petData)
     toast.success("Usuario logueado con éxito")
     
     return window.location.href = "/"
@@ -184,4 +184,3 @@
     }
   }
 </style>
-dssd

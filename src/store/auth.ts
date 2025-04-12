@@ -28,6 +28,7 @@ const useStore = create<State>((set, get) => ({
       method: "post"
     })
     const data = await pet.json()
+    console.log(data)
     set({ auth: data})
     dispatchEvent(unloadingEvent)
 
