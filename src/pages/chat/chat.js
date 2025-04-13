@@ -225,7 +225,7 @@ function updateUsersList(users) {
 
 // Gestión de mensajes y chat
 function initializeSocket(token) {
-  socket = io("http://localhost:4000", {
+  socket = io(import.meta.env.PUBLIC_API_URL, {
     auth: { token },
     withCredentials: true,
   });
@@ -483,7 +483,7 @@ loginForm.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   try {
-    const response = await fetch("http://localhost:4000/api", {
+    const response = await fetch(`${import.meta.env.PUBLIC_API_URL}/api`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

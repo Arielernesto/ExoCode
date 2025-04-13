@@ -4,7 +4,7 @@ import useStore from 'store/auth'
 
 // Configuración del cliente Apollo
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/api',
+    uri: `${import.meta.env.PUBLIC_API_URL}/api`,
     credentials: "include",
     cache: new InMemoryCache()
 })

@@ -19,7 +19,7 @@ const useStore = create<State>((set, get) => ({
   loading: false,
   setLoading: (el) => set({ loading: el }),
   authorize: async () => {
-    const pet = await fetch("http://localhost:4000/api", {
+    const pet = await fetch(`${import.meta.env.PUBLIC_API_URL}/api`, {
       credentials: "include",
       headers: {
         "Content-Type": "application/json"
