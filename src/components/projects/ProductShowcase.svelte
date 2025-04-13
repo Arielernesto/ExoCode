@@ -480,7 +480,7 @@
         </div>
         
         <div class="relative z-10 max-w-3xl mx-auto text-center">
-          <h3 class="text-2xl md:text-3xl font-bold mb-4">¿Necesitas una solución personalizada?</h3>
+          <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white">¿Necesitas una solución personalizada?</h3>
           <p class="text-white/90 mb-8 text-lg">
             Nuestro equipo de expertos puede desarrollar productos a medida que se adapten perfectamente a las necesidades específicas de tu negocio.
           </p>

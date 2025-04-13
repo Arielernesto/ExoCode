@@ -39,6 +39,11 @@ export const AUTHORIZE = `
             lastname
             id
             email
+            rol {
+                role
+                job
+                permissions
+            }
         }
     }
 `

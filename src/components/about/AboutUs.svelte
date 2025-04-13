@@ -112,7 +112,7 @@
       <div class="relative order-2 md:order-1" in:scale={{ delay: 200, duration: 800, easing: quintOut }}>
         <div class="absolute inset-0 bg-[#8854d0]/20 rounded-2xl transform rotate-3"></div>
         <img 
-          src="/about/office.jpg" 
+          src="/products/dashboard.png" 
           alt="Nuestra oficina" 
           class="relative rounded-2xl shadow-xl transform -rotate-3 w-full h-auto"
         />
@@ -265,7 +265,7 @@
   </div>
   
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-    <h2 class="text-3xl md:text-4xl font-bold mb-6" in:scale={{ duration: 600 }}>
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white" in:scale={{ duration: 600 }}>
       ¿Listo para trabajar con nosotros?
     </h2>
     <p class="text-xl text-white/80 mb-10 max-w-3xl mx-auto" in:fade={{ duration: 800, delay: 200 }}>

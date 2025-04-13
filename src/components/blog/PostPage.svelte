@@ -21,6 +21,7 @@ import CodeTool from '@editorjs/code';
 import Table from '@editorjs/table';
 import { Toaster, toast } from 'svelte-sonner';
 import { ReadImage, uploadImage } from 'utils/images';
+import { user } from '../../store/store.js';
 
 interface EditorData {
     time: number;
@@ -34,11 +35,21 @@ let title: string = $state("");
 let description: string = $state("");
 let image: string | null = $state(null);
 let fileUpload: File | null = $state(null);
+let isAdmin: boolean = $state(false);
+
+// Check if user is admin
+user.subscribe(userData => {
+    isAdmin = userData && userData.rol && userData.rol.role === 'admin';
+    
+    // If user is not admin and trying to edit, redirect to view mode
+    if (edit && !isAdmin) {
+        window.location.href = `/blog/${slug}`;
+    }
+});
 
 async function getPost() {
     const { loading, data, error}: { loading: boolean, data: any, error: any} = await Query(POST_BY_SLUG_QUERY, { slug })
     
-    console.log(data)
     post = data.post
   
     if (!data.post) {
@@ -54,7 +65,6 @@ async function getPost() {
 
     const edjsParser = editorjsHtml();
     const html = edjsParser.parse(post?.content)
-    console.log('HTML parsed:', html)
     htmlParsed = html
     return data.post
 }
@@ -208,10 +218,12 @@ function sharePost() {
         {:else}
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-4xl font-bold tracking-tight">{post.title}</h1>
+                {#if isAdmin}
                 <Button variant="outline" size="sm" onclick={() => window.location.href = `/blog/${post?.slug}/edit`}>
                     <Edit size={16} class="mr-2" />
                     Editar
                 </Button>
+                {/if}
             </div>
 
             <div class="flex items-center gap-4 text-muted-foreground mb-8">
@@ -299,6 +311,9 @@ function sharePost() {
 
     :global(.prose code) {
         word-break: break-word;
+    }
+    :global(.ce-block__content) {
+        margin: 0 !important;
     }
 </style>
 

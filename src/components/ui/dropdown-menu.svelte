@@ -99,7 +99,7 @@ onMount(() => {
             >
               <li use:motion>
                 <a
-                  href="/"
+                  href={item?.link}
                   class={cn(
                     "group flex items-center gap-2 rounded-md border border-transparent text-black hover:text-neutral-700 focus-visible:text-neutral-300 focus-visible:border-neutral-800 focus-visible:outline-none",
                     item?.customStyle

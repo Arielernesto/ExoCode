@@ -44,7 +44,7 @@ import Button from 'lib/components/ui/button/button.svelte'
 						<a href="#latest-articles" class="bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all transform hover:-translate-y-1 shadow-lg">
 							Explorar artículos
 						</a>
-						<a href="/blog/create" class="bg-transparent border-2 border-white/30 backdrop-blur-sm px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-all transform hover:-translate-y-1">
+						<a href="/blog/create" class="bg-transparent border-2 border-white/30 backdrop-blur-sm px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-all transform hover:-translate-y-1 create-button hidden">
 							<span class="flex items-center gap-2">
 								<Plus size={20} />
 								Crear artículo
@@ -75,8 +75,8 @@ import Button from 'lib/components/ui/button/button.svelte'
 						<span class="text-sm font-semibold text-primary/70">COLECCIÓN DE ARTÍCULOS</span>
 						<h2 class="text-3xl font-bold mt-1">Publicaciones recientes</h2>
 					</div>
-					<Button variant="default" class="group">
-						<a href="/blog/create" class="flex items-center gap-2">
+					<Button variant="default" class="group create-button-container hidden">
+						<a href="/blog/create" class="flex items-center gap-2 create-button">
 							<Plus size={18} class="transition-transform group-hover:rotate-90" />
 							Crear Post
 						</a>
@@ -111,6 +111,26 @@ import Button from 'lib/components/ui/button/button.svelte'
 		</div>
 	</main>
 </Layout>
+
+<script>
+	// Check if user has admin role and show/hide buttons accordingly
+	import { user } from '../../store/store.js';
+	
+	user.subscribe(userData => {
+		const createButtons = document.querySelectorAll('.create-button');
+		const createButtonContainer = document.querySelector('.create-button-container');
+		
+		if (userData && userData.rol && userData.rol.role === 'admin') {
+			// Show create buttons for admin users
+			createButtons.forEach(button => button.classList.remove('hidden'));
+			if (createButtonContainer) createButtonContainer.classList.remove('hidden');
+		} else {
+			// Hide create buttons for non-admin users
+			createButtons.forEach(button => button.classList.add('hidden'));
+			if (createButtonContainer) createButtonContainer.classList.add('hidden');
+		}
+	});
+</script>
 
 <style>
 	/* Animations for the particles */

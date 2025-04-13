@@ -5,6 +5,7 @@
   import { onMount, onDestroy } from 'svelte';
   import { fade, fly } from 'svelte/transition';
   import { quintOut } from 'svelte/easing';
+  import { user } from "../../store/store.js";
 
   let articles: Post[] = [];
   let filteredArticles: Post[] = [];

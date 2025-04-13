@@ -11,3 +11,17 @@ const { slug } = Astro.params
     <PostEditor slug={slug} client:only/>
 </div>
 </Layout>
+
+<script>
+    // Check if user has admin role and redirect non-admin users
+    import { user } from '../../../store/store.js';
+    
+    const slug = window.location.pathname.split('/')[2]; // Extract slug from URL
+    
+    user.subscribe(userData => {
+        if (!userData || !userData.rol || userData.rol.role !== 'admin') {
+            // Redirect non-admin users to the blog post view page
+            window.location.href = `/blog/${slug}`;
+        }
+    });
+</script>

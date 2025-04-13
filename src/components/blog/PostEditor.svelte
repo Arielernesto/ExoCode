@@ -14,6 +14,7 @@
   import { Toaster, toast } from 'svelte-sonner';
   import { Mutate, Query } from 'lib/apollo-client';
   import { POST_BY_SLUG_QUERY, POST_UPDATE_MUTATION } from 'queries/post.ts';
+  import { user } from '../../store/store.js';
 
   // Propiedades externas usando runes
   const { slug } = $props<{ slug: string }>();
@@ -34,6 +35,17 @@
   let selectedImage: File | null = $state(null);
   let existingImageUrl: string | null = $state(null);
   let post: Post | null = $state(null);
+  let isAdmin: boolean = $state(false);
+
+  // Check if user is admin
+  user.subscribe(userData => {
+    isAdmin = userData && userData.rol && userData.rol.role === 'admin';
+    
+    // If not admin, redirect to the blog post
+    if (!isAdmin) {
+      window.location.href = `/blog/${slug}`;
+    }
+  });
 
   onMount(async () => {
     await fetchPostData();

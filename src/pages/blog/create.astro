@@ -6,3 +6,15 @@ import Layout from '../../layouts/Layout.astro'
 	<Layout>
 	    <BlogPostCreator client:only/>
 	</Layout>
+
+<script>
+    // Check if user has admin role and redirect non-admin users
+    import { user } from '../../store/store.js';
+    
+    user.subscribe(userData => {
+        if (!userData || !userData.rol || userData.rol.role !== 'admin') {
+            // Redirect non-admin users to the blog home page
+            window.location.href = '/blog';
+        }
+    });
+</script>

@@ -5,7 +5,7 @@
   import Dropdown from "components/ui/dropdown-menu.svelte"
   import {
       LayoutGridIcon,
-      TrashIcon,
+      LogOut,
       Building2,
       UserCircleIcon,
       ChevronRightIcon,
@@ -42,12 +42,12 @@
     const items = [
       { icon: UserCircleIcon, name: "Perfil" },
       { icon: LayoutGridIcon, name: "Dashboard" },
-      { icon: Building2, name: "Inbox" },
+      { icon: Building2, name: "Inbox", link: "/chat" },
       {
-        icon: TrashIcon,
+        icon: LogOut,
         name: "Cerrar Sesión",
         customStyle:
-          "!text-red-500 hover:bg-red-500/10 focus-visible:text-red-500 focus-visible:bg-red-500/10 focus-visible:border-red-500/10",
+          "!text-red-500 hover:bg-red-500/10 focus-visible:text-red-500 focus-visible:bg-red-500/10 focus-visible:border-red-500/10 p-1",
       },
     ];
 </script>
