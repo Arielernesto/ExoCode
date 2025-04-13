@@ -9,10 +9,17 @@ import tailwind from '@astrojs/tailwind';
 
 import vercel from '@astrojs/vercel';
 
+import node from '@astrojs/node';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
   integrations: [mdx(), sitemap(), svelte(), tailwind()],
   output: "server",
-  adapter: vercel()
+  adapter: node({
+    mode: 'standalone',
+  }),
+  server: {
+    host: '0.0.0.0'
+  },
 });

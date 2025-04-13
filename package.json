@@ -6,11 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start": "node ./dist/server/entry.mjs"
   },
   "dependencies": {
     "@apollo/client": "^3.12.3",
     "@astrojs/mdx": "^4.0.3",
+    "@astrojs/node": "^9.1.3",
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/svelte": "^7.0.2",
